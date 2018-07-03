@@ -1,0 +1,18 @@
+{
+  "id": "Thai-Dishes",
+  "name": "Thai Dishes",
+  "address": "161 Church St. Burlington, VT 05401",
+  "phone number": "(802) 448-3215",
+  "hours": [
+  "Closed on Mondays",
+  "Lunch: Tuesday–Friday, 11:30 am–2:30 pm (special lunch menu served)",
+  "Weekends starting at noon (dinner menu served)",
+  "Dinner: Tuesday–Thursday: 5:00–9:30 pm",
+  "Friday: 5:00–10:30 pm",
+  "Saturdays & Sundays: 12:30–4:00 pm",
+  "WEEKENDS & HOLIDAYS: 12:00–10:30 pm (dinner menu served)"
+  ],
+  "notes": [
+    "It has Thai food."
+  ]
+}
