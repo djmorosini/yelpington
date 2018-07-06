@@ -42,6 +42,7 @@
   <h2 id="hourH"></h2>
   <div id="hours"></div>
   <br>
+  <h2 id="notesH"></h2>
   <div id="notes"></div>
   <br>
   <div id="map"></div>
@@ -133,8 +134,18 @@
           } else {
             document.getElementById('hours').innerHTML = "<h2>Hours: </h2><br>" + data.hours
           }
-          data.notes = marked(data.notes.toString())
-          document.getElementById('notes').innerHTML = "<h2>Notes: </h2><br>" + data.notes
+
+          if (Array.isArray(data.notes)) {
+            document.getElementById('notesH').textContent = "Notes: "
+            for (let i = 0; i < data.notes.length; i++) {
+
+              document.getElementById('notes').innerHTML += marked(data.notes[i])
+
+            }
+          } else {
+            data.notes = marked(data.notes.toString())
+            document.getElementById('notes').innerHTML = "<h2>Notes: </h2><br>" + data.notes
+          }
 
         })
         .then(function () {
@@ -154,7 +165,7 @@
               secondBbox = myJSON[0].boundingbox[1]
               thirdBbox = myJSON[0].boundingbox[2]
               fourthBbox = myJSON[0].boundingbox[3]
-              
+
               mark1 = myJSON[0].lat
               mark2 = myJSON[0].lon
 

@@ -1,11 +1,11 @@
 {
   "id": "new-moon-cafe",
-  "name": "New Moon Cafe",
+  "name": "New Moon Cafe ☕",
   "address": "150 Cherry St.",
   "phone number": "(802) 383-1505",
   "hours": "7:30 am - 7:00 pm",
+  "webpage": "http://newmoonvt.com/lunch-dinner-menu-burlington-vt/",
   "notes": [
-    "Their large salads are huge!",
-    "http://newmoonvt.com/lunch-dinner-menu-burlington-vt/"
+    "Their large salads are huge!"
   ]
 }
