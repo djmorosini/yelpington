@@ -124,7 +124,7 @@
           return response.text();
         })
         .then(function (myText) {
-          resturantList = JSON.parse(myText)
+          restaurantList = JSON.parse(myText)
 
           let navListItems = document.getElementsByClassName("navList")
           for (i = 0; i < navListItems.length; i++) {
@@ -135,14 +135,14 @@
             document.getElementById(listNumber).innerHTML = "<a href=/?name=" + jsonListNumberID + ">" + jsonListNumberNames + "</a>"
           }
 
-          populateList("list1", resturantList.list1.id, resturantList.list1.names)
-          populateList("list2", resturantList.list2.id, resturantList.list2.names)
-          populateList("list3", resturantList.list3.id, resturantList.list3.names)
-          populateList("list4", resturantList.list4.id, resturantList.list4.names)
-          populateList("list5", resturantList.list5.id, resturantList.list5.names)
-          populateList("list6", resturantList.list6.id, resturantList.list6.names)
-          populateList("list7", resturantList.list7.id, resturantList.list7.names)
-          
+          populateList("list1", restaurantList.list1.id, restaurantList.list1.names)
+          populateList("list2", restaurantList.list2.id, restaurantList.list2.names)
+          populateList("list3", restaurantList.list3.id, restaurantList.list3.names)
+          populateList("list4", restaurantList.list4.id, restaurantList.list4.names)
+          populateList("list5", restaurantList.list5.id, restaurantList.list5.names)
+          populateList("list6", restaurantList.list6.id, restaurantList.list6.names)
+          populateList("list7", restaurantList.list7.id, restaurantList.list7.names)
+
           let mapIdDiv = document.getElementById("mapid")
           mapIdDiv.setAttribute("style", "height:400px; width:600px;");
 
