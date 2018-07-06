@@ -14,39 +14,98 @@
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <style>
+  body {
+    background-color: lightgray;
+  }
+
   h1 {
-    color: red;
+    color: rgb(155, 3, 3);
+    text-align: center;
+  }
+
+  h2 {
+    color: rgb(0, 0, 158);
+  }
+
+  #home {
+    float: left;
+    width: 50px;
+    font-size: 18px;
+    color: black;
+  }
+
+  #home:hover {
+    color: rgb(109, 0, 109);
+    text-decoration: none;
+    font-size: 20px;
   }
 
   #mapid {
-    height: 400px;
-    width: 600px;
+    position: absolute;
+    top: 90px;
+    left: 450px;
+
+  }
+
+  #wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #map {
+    position: absolute;
+    top: 70px;
+    left: 800px;
+  }
+
+  #navBar a {
+    font-size: 18px;
+    color: black;
+  }
+
+  #navBar a:hover {
+    color: rgb(109, 0, 109);
+    text-decoration: none;
+    font-size: 20px;
+  }
+
+  #mapid a {
+    color: black;
+    font-size: 12px;
+  }
+
+  #mapid a:hover {
+    color: rgb(109, 0, 109);
+    text-decoration: none;
   }
 </style>
 
 <body>
-  <a href="/">Home</a>
-  <h1></h1>
-  <div id="list1"></div>
-  <div id="list2"></div>
-  <div id="list3"></div>
-  <div id="list4"></div>
-  <div id="list5"></div>
-  <div id="list6"></div>
-  <div id="list7"></div>
+  <a href="/" id="home">Home</a>
 
-  <div id="address1"></div>
-  <br>
-  <div id="phone"></div>
-  <br>
-  <h2 id="hourH"></h2>
-  <div id="hours"></div>
-  <br>
-  <h2 id="notesH"></h2>
-  <div id="notes"></div>
-  <br>
+  <h1 id="header"></h1>
+
+  <nav id="navBar">
+    <div id="list1" class="navList"></div>
+    <div id="list2" class="navList"></div>
+    <div id="list3" class="navList"></div>
+    <div id="list4" class="navList"></div>
+    <div id="list5" class="navList"></div>
+    <div id="list6" class="navList"></div>
+    <div id="list7" class="navList"></div>
+  </nav>
+  <div id="wrapper">
+    <div id="address1"></div>
+    <br>
+    <div id="phone"></div>
+    <h2 id="hourH"></h2>
+    <div id="hours"></div>
+    <br>
+    <h2 id="notesH"></h2>
+    <div id="notes"></div>
+    <br>
+  </div>
   <div id="map"></div>
-  <div id="mapMarker"></div>
   <div id="mapid"></div>
 
   <script>
@@ -56,7 +115,10 @@
     let data;
     let list;
     if (document.location.search == "") {
-      console.log("It worked!")
+
+      let header = document.getElementById("header")
+      header.textContent = "Restaurant Directory 🍗"
+
       fetch('list.json')
         .then(function (response) {
           return response.text();
@@ -64,20 +126,25 @@
         .then(function (myText) {
           resturantList = JSON.parse(myText)
 
-          // for (i=0; i < resturantList.length)
-          document.getElementById("list1").innerHTML = "<a href=/?name=" + resturantList.list1.id + ">" + resturantList.list1.names + "</a>"
+          let navListItems = document.getElementsByClassName("navList")
+          for (i = 0; i < navListItems.length; i++) {
+            navListItems[i].setAttribute("style", "text-align:center; height: 30px; width: 220px; padding: 20px 10px 10px 10px;")
+          }
 
-          document.getElementById("list2").innerHTML = "<a href=/?name=" + resturantList.list2.id + ">" + resturantList.list2.names + "</a>"
+          function populateList(listNumber, jsonListNumberID, jsonListNumberNames) {
+            document.getElementById(listNumber).innerHTML = "<a href=/?name=" + jsonListNumberID + ">" + jsonListNumberNames + "</a>"
+          }
 
-          document.getElementById("list3").innerHTML = "<a href=/?name=" + resturantList.list3.id + ">" + resturantList.list3.names + "</a>"
-
-          document.getElementById("list4").innerHTML = "<a href=/?name=" + resturantList.list4.id + ">" + resturantList.list4.names + "</a>"
-
-          document.getElementById("list5").innerHTML = "<a href=/?name=" + resturantList.list5.id + ">" + resturantList.list5.names + "</a>"
-
-          document.getElementById("list6").innerHTML = "<a href=/?name=" + resturantList.list6.id + ">" + resturantList.list6.names + "</a>"
-
-          document.getElementById("list7").innerHTML = "<a href=/?name=" + resturantList.list7.id + ">" + resturantList.list7.names + "</a>"
+          populateList("list1", resturantList.list1.id, resturantList.list1.names)
+          populateList("list2", resturantList.list2.id, resturantList.list2.names)
+          populateList("list3", resturantList.list3.id, resturantList.list3.names)
+          populateList("list4", resturantList.list4.id, resturantList.list4.names)
+          populateList("list5", resturantList.list5.id, resturantList.list5.names)
+          populateList("list6", resturantList.list6.id, resturantList.list6.names)
+          populateList("list7", resturantList.list7.id, resturantList.list7.names)
+          
+          let mapIdDiv = document.getElementById("mapid")
+          mapIdDiv.setAttribute("style", "height:400px; width:600px;");
 
           let mymap = L.map('mapid').setView([44.4775, -73.2128], 15);
 
@@ -108,8 +175,6 @@
 
           let marker7 = L.marker([44.4795, -73.2121]).addTo(mymap);
           marker7.bindPopup("<a href='/?name=new-moon'>New Moon</a>").openPopup();
-
-          // document.getElementById("mapMarker").innerHTML = '<iframe src="https://www.google.com/maps/d/embed?mid=1Rdy1Kvqilf_xmxfV8y5ndHlGkPO9QLbh" width="640" height="480"></iframe>'
 
         })
 

@@ -1,38 +1,38 @@
 {
         "list1": {
-            "id": "thai-dishes",
-            "names": "Thai Dishes 🍛",
-            "address": "161 Church St. Burlington, VT 05401",
-            "mapMarker": "44.4757, -73.2126"
-        },
-        "list2": {
-            "id": "city-market",
-            "names": "City Market 🍴",
-            "address": "82 South Winooski Street, Burlington, VT 05401"
-        },
-        "list3": {
             "id": "asiana-noodle-house",
             "names": "Asiana Noodle House 🍜",
-            "address": "88 Church St. Burlington, VT 05401"
+            "address": "88 Church Street Burlington, VT 05401"
         },
-        "list4": {
+        "list2": {
             "id": "august-first",
             "names": "August First 🍞",
-            "address": "149 S Champlain St, Burlington, VT 05401"
+            "address": "149 S Champlain Steet Burlington, VT 05401"
         },
-        "list5": {
+        "list3": {
+            "id": "city-market",
+            "names": "City Market 🍴",
+            "address": "82 South Winooski Street Burlington, VT 05401"
+        },
+        "list4": {
             "id": "church-street-tavern",
             "names": "Church Street Tavern 🍸",
-            "address": "103 Church Street, Burlington, VT 05401"
+            "address": "103 Church Street Burlington, VT 05401"
         },
-        "list6": {
+        "list5": {
             "id": "mr-mikes",
             "names": "Mr. Mike's 🍕",
-            "address": "206 Main St. Burlington, VT 05401"
+            "address": "206 Main Street Burlington, VT 05401"
         },
-        "list7": {
+        "list6": {
             "id": "new-moon",
             "names": "New Moon Cafe ☕",
-            "address": "150 Cherry St. Burlington, VT 05401"
+            "address": "150 Cherry Street Burlington, VT 05401"
+        },
+        "list7": {
+            "id": "thai-dishes",
+            "names": "Thai Dishes 🍛",
+            "address": "161 Church Street Burlington, VT 05401",
+            "mapMarker": "44.4757, -73.2126"
         }
 }
