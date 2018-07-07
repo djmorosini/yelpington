@@ -21,6 +21,17 @@
   h1 {
     color: rgb(155, 3, 3);
     text-align: center;
+    height: 50px;
+  }
+
+  h1 a {
+    color: rgb(155, 3, 3);
+  }
+
+  h1 a:hover {
+    color: rgb(109, 0, 109);
+    text-decoration: none;
+    font-size: 34px;
   }
 
   h2 {
@@ -42,9 +53,13 @@
 
   #mapid {
     position: absolute;
-    top: 90px;
+    top: 130px;
     left: 450px;
+  }
 
+  #menu {
+    text-align: right;
+    height: 10px;
   }
 
   #wrapper {
@@ -54,8 +69,19 @@
 
   #map {
     position: absolute;
-    top: 70px;
+    top: 95px;
     left: 800px;
+  }
+
+  #menu a {
+    font-size: 18px;
+    color: black;
+  }
+
+  #menu a:hover {
+    color: rgb(109, 0, 109);
+    text-decoration: none;
+    font-size: 20px;
   }
 
   #navBar a {
@@ -84,8 +110,10 @@
   <a href="/" id="home">Home</a>
 
   <h1 id="header"></h1>
+  <div id="menu"></div>
 
   <nav id="navBar">
+    <div id="list0" class="navList"></div>
     <div id="list1" class="navList"></div>
     <div id="list2" class="navList"></div>
     <div id="list3" class="navList"></div>
@@ -110,17 +138,17 @@
 
   <script>
 
-    let params = new URLSearchParams(document.location.search.slice(1));
-    let name = params.get("name");
-    // let name = document.location.pathname.slice(1);
+    // let params = new URLSearchParams(document.location.search.slice(1));
+    // let name = params.get("name");
+    let name = document.location.pathname.slice(1)
     let data;
     let list;
-    if (document.location.search == "") {
+    if (!name || name == "all") {
 
       let header = document.getElementById("header")
       header.textContent = "Restaurant Directory 🍗"
 
-      fetch('list.json')
+      fetch('files/list.json')
         .then(function (response) {
           return response.text();
         })
@@ -129,13 +157,14 @@
 
           let navListItems = document.getElementsByClassName("navList")
           for (i = 0; i < navListItems.length; i++) {
-            navListItems[i].setAttribute("style", "text-align:center; height: 30px; width: 220px; padding: 20px 10px 10px 10px;")
+            navListItems[i].setAttribute("style", "text-align:center; height: 30px; width: 250px; padding: 20px 10px 10px 10px;")
           }
 
           function populateList(listNumber, jsonListNumberID, jsonListNumberNames) {
-            document.getElementById(listNumber).innerHTML = "<a href=/?name=" + jsonListNumberID + ">" + jsonListNumberNames + "</a>"
+            document.getElementById(listNumber).innerHTML = "<a href=/" + jsonListNumberID + ">" + jsonListNumberNames + "</a>"
           }
 
+          populateList("list0", restaurantList.list0.id, restaurantList.list0.names)
           populateList("list1", restaurantList.list1.id, restaurantList.list1.names)
           populateList("list2", restaurantList.list2.id, restaurantList.list2.names)
           populateList("list3", restaurantList.list3.id, restaurantList.list3.names)
@@ -156,30 +185,34 @@
             accessToken: 'pk.eyJ1IjoiZGptb3Jvc2luaSIsImEiOiJjamphMng3a20wN2xwM3BxaDl1b2hlamNjIn0.dd7Bj-cAdxOMnaS9t01gpw'
           }).addTo(mymap);
 
+          let marker0 = L.marker([44.4758, -73.2128]).addTo(mymap);
+          marker0.bindPopup("<a href='/ahli-babas-kabob-shop'>Ahli Baba's Kabob Shop</a>")
+
           let marker1 = L.marker([44.4757, -73.2126]).addTo(mymap);
-          marker1.bindPopup("<a href='/?name=thai-dishes'>Thai Dishes</a>")
+          marker1.bindPopup("<a href='/thai-dishes'>Thai Dishes</a>")
 
           let marker2 = L.marker([44.4782, -73.2108]).addTo(mymap);
-          marker2.bindPopup("<a href='/?name=city-market'>City Market</a>")
+          marker2.bindPopup("<a href='/city-market'>City Market</a>")
 
           let marker3 = L.marker([44.4755, -73.2171]).addTo(mymap);
-          marker3.bindPopup("<a href='/?name=august-first'>August First</a>")
+          marker3.bindPopup("<a href='/august-first'>August First</a>")
 
           let marker4 = L.marker([44.4775, -73.2128]).addTo(mymap);
-          marker4.bindPopup("<a href='/?name=church-street-tavern'>Church Street Tavern</a>")
+          marker4.bindPopup("<a href='/church-street-tavern'>Church Street Tavern</a>")
 
           let marker5 = L.marker([44.4762, -73.2113]).addTo(mymap);
-          marker5.bindPopup("<a href='/?name=mr-mikes'>Mr. Mike's</a>")
+          marker5.bindPopup("<a href='/mr-mikes'>Mr. Mike's</a>")
 
           let marker6 = L.marker([44.4795, -73.2121]).addTo(mymap);
-          marker6.bindPopup("<a href='/?name=new-moon'>New Moon</a>")
+          marker6.bindPopup("<a href='/new-moon'>New Moon</a>")
 
           let marker7 = L.marker([44.4780, -73.2124]).addTo(mymap);
-          marker7.bindPopup("<a href='/?name=asiana-noodle-house'>Asiana Noodle House</a>")
+          marker7.bindPopup("<a href='/asiana-noodle-house'>Asiana Noodle House</a>")
 
         })
 
     } else {
+
       fetch(name + '.json')
         .then(function (response) {
           return response.text();
@@ -187,7 +220,7 @@
         .then(function (myText) {
 
           data = JSON.parse(myText)
-          document.querySelector('h1').innerHTML = data.name
+          document.querySelector('h1').innerHTML = "<a href=" + data.website + ">" + data.name + "</a>"
           document.getElementById('phone').innerHTML = "<h2>Phone: </h2><br>" + data["phone number"]
           document.getElementById('address1').innerHTML = "<h2>Address: </h2><br>" + data.address
           if (Array.isArray(data.hours)) {
@@ -212,15 +245,15 @@
             data.notes = marked(data.notes.toString())
             document.getElementById('notes').innerHTML = "<h2>Notes: </h2><br>" + data.notes
           }
-
+          document.getElementById('menu').innerHTML = "<a href=" + data.menu + ">" + data.name + "Menu</a>"
         })
         .then(function () {
 
           let addressArray = data.address.split(" ")
 
-          let location = addressArray.join("+")
+          let location1 = addressArray.join("+")
 
-          let url = "https://nominatim.openstreetmap.org/search?q=" + location + "&format=json"
+          let url = "https://nominatim.openstreetmap.org/search?q=" + location1 + "&format=json"
           fetch(url)
             .then(function (response) {
               console.log(url)

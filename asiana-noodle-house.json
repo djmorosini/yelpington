@@ -1,12 +1,15 @@
 {
-"id": "asiana-noodle-house",
-"name": "Asiana Noodle House 🍜",
-"address": "88 Church St. Burlington, VT 05401",
-"phone number": "802-862-8828",
-"hours": "11:30am - 11:00pm",
-"notes": [
-    "The Spicy Tuna Roll is delish!",
-    "They don't deliver but they do offer the option of online ordering, which can be found on the website.",
-    "A full menu can also be found there.",
-    "Happy eating...nom nom nom nom!!"
-]} 
+    "id": "asiana-noodle-house",
+    "name": "Asiana Noodle House 🍜",
+    "address": "88 Church St. Burlington, VT 05401",
+    "phone number": "802-862-8828",
+    "hours": "11:30am - 11:00pm",
+    "website": "http://www.asiananoodle.com/",
+    "menu": "http://www.asiananoodle.com/menu.aspx",
+    "notes": [
+        "The Spicy Tuna Roll is delish!",
+        "They don't deliver but they do offer the option of online ordering, which can be found on the website.",
+        "A full menu can also be found there.",
+        "Happy eating...nom nom nom nom!!"
+    ]
+}

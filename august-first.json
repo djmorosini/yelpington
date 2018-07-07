@@ -2,8 +2,9 @@
     "id": "August-First",
     "name": "August First 🍞",
     "address": "149 S Champlain St, Burlington, VT 05401",
-    "phone number": "(802)540-0060",
+    "phone number": "(802) 540-0060",
     "hours": "Monday-Saturday 7:30 - 4:00pm",
-    "website": "augustfirstvt.com",
+    "website": "http://augustfirstvt.com/",
+    "menu": "http://augustfirstvt.com/menu/",
     "notes": ["Their jalapeno cheddar bread is good even though their laptop policy is bogus.", "Chipotle Breakfast Sandwich... It's Killer!"]
 }
