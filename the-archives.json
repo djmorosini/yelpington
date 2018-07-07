@@ -1,0 +1,16 @@
+{
+    "id": "the-archives",
+    "name": "The Archives 🎮 👾",
+    "address": "191 College St Burlington, VT 05401",
+    "phone number": "(802) 448-4333",
+    "hours": [
+        "Monday-Friday: 5:00 pm - 2:00 am",
+        "Saturday-Sunday: 12:00 pm - 2:00 am"
+    ],
+    "website": "http://www.thearchivesbar.com/",
+    "menu": "http://www.thearchivesbar.com/menu/",
+    "notes": [
+        "Bar with old arcade games! Great selection of Pacman/Galaga-era games, 90s games (TMNT arcade game, Simpsons arcade game, etc.) and pinball. Token machine accepts both cash and card.",
+        "Give the Peach Emoji (buffalo trace bourbon, becherovka, peach, honey, lemon) a try! 🍑"
+    ]
+}

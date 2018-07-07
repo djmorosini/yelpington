@@ -1,43 +1,121 @@
 {
-    "list0": {
+    "ahliB": {
         "id": "ahli-babas-kabob-shop",
         "names": "Ahli Baba's Kabob Shop 🌯",
-        "address": "163 Main St, Burlington, VT 05401"
+        "address": "163 Main St, Burlington, VT 05401",
+        "lat": "44.4758",
+        "lon": "-73.2128"
     },
-    "list1": {
+    "asiana": {
         "id": "asiana-noodle-house",
         "names": "Asiana Noodle House 🍜",
-        "address": "88 Church St. Burlington, VT 05401"
+        "address": "88 Church St. Burlington, VT 05401",
+        "lat": "44.4780",
+        "lon": "-73.2124"
     },
-    "list2": {
+    "august": {
         "id": "august-first",
         "names": "August First 🍞",
-        "address": "149 S Champlain St, Burlington, VT 05401"
+        "address": "149 S Champlain St, Burlington, VT 05401",
+        "lat": "44.4755",
+        "lon": "-73.2171"
     },
-    "list3": {
+    "cityM": {
         "id": "city-market",
         "names": "City Market 🍴",
-        "address": "82 South Winooski Street, Burlington, VT 05401"
+        "address": "82 South Winooski Street, Burlington, VT 05401",
+        "lat": "44.4782",
+        "lon": "-73.2108"
     },
-    "list4": {
+    "churchT": {
         "id": "church-street-tavern",
         "names": "Church Street Tavern 🍸",
-        "address": "103 Church Street, Burlington, VT 05401"
+        "address": "103 Church Street, Burlington, VT 05401",
+        "lat": "44.4775",
+        "lon": "-73.2128"
     },
-    "list5": {
+    "mrMike": {
         "id": "mr-mikes",
         "names": "Mr. Mike's 🍕",
-        "address": "206 Main St. Burlington, VT 05401"
+        "address": "206 Main St. Burlington, VT 05401",
+        "lat": "44.4762",
+        "lon": "-73.2113"
     },
-    "list6": {
+    "newMoon": {
         "id": "new-moon",
-        "names": "New Moon Cafe ☕",
-        "address": "150 Cherry St. Burlington, VT 05401"
+        "names": "New Moon Cafe 🌑",
+        "address": "150 Cherry St. Burlington, VT 05401",
+        "lat": "44.4795",
+        "lon": "-73.2121"
     },
-    "list7": {
+    "pizzaVerita": {
+        "id": "pizzeria-verita",
+        "names": "Pizzeria Verita 🍕",
+        "address": "156 Saint Paul Street Burlington, VT 05401",
+        "lat": "44.4752",
+        "lon": "-73.2137"
+    },
+    "thaiDishes": {
         "id": "thai-dishes",
         "names": "Thai Dishes 🍛",
         "address": "161 Church St. Burlington, VT 05401",
-        "mapMarker": "44.4757, -73.2126"
+        "lat": "44.4757",
+        "lon": "-73.2126"
+    },
+    "americanFlat": {
+        "id": "american-flatbread",
+        "names": "American Flatbread 🍕",
+        "address": "115 Saint Paul Street Burlington, VT 05401",
+        "lat": "44.4765",
+        "lon": "-73.2143"
+    },
+    "deli126": {
+        "id": "deli-126",
+        "names": "Deli 126 🥪",
+        "address": "126 College St. Burlington, VT 05401",
+        "lat": "44.4772",
+        "lon": "-73.2149"
+    },
+    "kkd": {
+        "id": "kountry-kart-deli",
+        "names": "Kountry Kart Deli 🍔",
+        "address": "155 Main St. Burlington, VT 05401",
+        "lat": "44.4758",
+        "lon": "-73.2130"
+    },
+    "muddyWaters": {
+        "id": "muddy-waters",
+        "names": "Muddy Waters ☕",
+        "address": "184 Main St. Burlington, VT 05401",
+        "lat": "44.4762",
+        "lon": "-73.2119"
+    },
+    "dailyPlanet": {
+        "id": "daily-planet",
+        "names": "Daily Planet 🌎",
+        "address": "15 Center St, Burlington, VT 05401",
+        "lat": "44.4778",
+        "lon": "-73.2117"
+    },
+    "redOnion": {
+        "id": "red-onion",
+        "names": "Red Onion 🍞",
+        "address": "140 Church St. Burlington, VT 05401",
+        "lat": "44.4764",
+        "lon": "-73.2123"
+    },
+    "splash": {
+        "id": "splash-at-the-boathouse",
+        "names": "Splash At the Boathouse 🐟",
+        "address": "1 College Street Burlington, VT 05401",
+        "lat": "44.4768",
+        "lon": "-73.2204"
+    },
+    "theArchives": {
+        "id": "the-archives",
+        "names": "The Archives 🎮 👾",
+        "address": "191 College St Burlington, VT 05401",
+        "lat": "44.4770",
+        "lon": "-73.2120"
     }
 }

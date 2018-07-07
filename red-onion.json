@@ -1,0 +1,15 @@
+{
+    "id": "red-onion",
+    "name": "Red Onion 🍞",
+    "address": "140 Church St. Burlington, VT 05401",
+    "phone number": "(802) 865-2563",
+    "hours": [
+        "9:00 am - 6:00 pm",
+        "Friday-Saturday: 9:00 am - 8:00 pm"
+    ],
+    "website": "http://www.redonioncafe.org/",
+    "menu": "http://www.redonioncafe.org/menu",
+    "notes": [
+        "Nice thick bread. Can make own sandwiches."
+    ]
+}

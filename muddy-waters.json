@@ -1,0 +1,20 @@
+{
+    "id": "muddy-waters",
+    "name": "Muddy Waters ☕",
+    "address": "184 Main St. Burlington, VT 05401",
+    "phone number": "(802) 658-0466",
+    "hours": [
+        "Saturday: 7:30am – 11:00 pm",
+        "Sunday: 8:30am – 10:00 pm",
+        "Monday: 7:30AM–6:00 pm",
+        "Tuesday: 7:30AM–10:00 pm",
+        "Wednesday: 7:30AM–10:00 pm",
+        "Thursday: 7:30AM–10:00 pm",
+        "Friday: 7:30AM–11:00 pm"
+    ],
+    "website": "https://www.facebook.com/Muddy-Waters-113411845359082/",
+    "menu": "https://www.facebook.com/Muddy-Waters-113411845359082/",
+    "notes": [
+        "Get your coffee here!"
+    ]
+}

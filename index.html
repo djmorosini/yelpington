@@ -55,11 +55,19 @@
     position: absolute;
     top: 130px;
     left: 450px;
+    border: 1px solid black;
   }
 
   #menu {
-    text-align: right;
-    height: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+
+  #menuLink {
+    height: 30px;
+    width:280px;
+    text-align: center;
   }
 
   #wrapper {
@@ -69,7 +77,7 @@
 
   #map {
     position: absolute;
-    top: 95px;
+    top: 120px;
     left: 800px;
   }
 
@@ -87,12 +95,19 @@
   #navBar a {
     font-size: 18px;
     color: black;
+    width: 250px;
+    height: 50px;
+    overflow: hidden;
+    display: block;
+    margin: 10px;
+    border: 1px solid black;
   }
 
   #navBar a:hover {
-    color: rgb(109, 0, 109);
+    color: rgb(78, 1, 78);
     text-decoration: none;
     font-size: 20px;
+    background-color: rgb(255, 75, 75);
   }
 
   #mapid a {
@@ -112,16 +127,7 @@
   <h1 id="header"></h1>
   <div id="menu"></div>
 
-  <nav id="navBar">
-    <div id="list0" class="navList"></div>
-    <div id="list1" class="navList"></div>
-    <div id="list2" class="navList"></div>
-    <div id="list3" class="navList"></div>
-    <div id="list4" class="navList"></div>
-    <div id="list5" class="navList"></div>
-    <div id="list6" class="navList"></div>
-    <div id="list7" class="navList"></div>
-  </nav>
+  <nav id="navBar"></nav>
   <div id="wrapper">
     <div id="address1"></div>
     <br>
@@ -155,28 +161,37 @@
         .then(function (myText) {
           restaurantList = JSON.parse(myText)
 
+          function populateList(listNumber, jsonListNumberID, jsonListNumberNames) {
+            document.getElementById(listNumber).innerHTML += "<a href=/" + jsonListNumberID + "><div class='navList'>" + jsonListNumberNames + "</div></a>"
+          }
+
+          populateList("navBar", restaurantList.ahliB.id, restaurantList.ahliB.names)
+          populateList("navBar", restaurantList.americanFlat.id, restaurantList.americanFlat.names)
+          populateList("navBar", restaurantList.asiana.id, restaurantList.asiana.names)
+          populateList("navBar", restaurantList.august.id, restaurantList.august.names)
+          populateList("navBar", restaurantList.cityM.id, restaurantList.cityM.names)
+          populateList("navBar", restaurantList.churchT.id, restaurantList.churchT.names)
+          populateList("navBar", restaurantList.dailyPlanet.id, restaurantList.dailyPlanet.names)
+          populateList("navBar", restaurantList.deli126.id, restaurantList.deli126.names)
+          populateList("navBar", restaurantList.kkd.id, restaurantList.kkd.names)
+          populateList("navBar", restaurantList.mrMike.id, restaurantList.mrMike.names)
+          populateList("navBar", restaurantList.muddyWaters.id, restaurantList.muddyWaters.names)
+          populateList("navBar", restaurantList.newMoon.id, restaurantList.newMoon.names)
+          populateList("navBar", restaurantList.pizzaVerita.id, restaurantList.pizzaVerita.names)
+          populateList("navBar", restaurantList.redOnion.id, restaurantList.redOnion.names)
+          populateList("navBar", restaurantList.splash.id, restaurantList.splash.names)
+          populateList("navBar", restaurantList.thaiDishes.id, restaurantList.thaiDishes.names)
+          populateList("navBar", restaurantList.theArchives.id, restaurantList.theArchives.names)
+
           let navListItems = document.getElementsByClassName("navList")
           for (i = 0; i < navListItems.length; i++) {
-            navListItems[i].setAttribute("style", "text-align:center; height: 30px; width: 250px; padding: 20px 10px 10px 10px;")
+            navListItems[i].setAttribute("style", "text-align:center; height: 30px; width: 250px; padding: 10px 10px 10px 5px;")
           }
-
-          function populateList(listNumber, jsonListNumberID, jsonListNumberNames) {
-            document.getElementById(listNumber).innerHTML = "<a href=/" + jsonListNumberID + ">" + jsonListNumberNames + "</a>"
-          }
-
-          populateList("list0", restaurantList.list0.id, restaurantList.list0.names)
-          populateList("list1", restaurantList.list1.id, restaurantList.list1.names)
-          populateList("list2", restaurantList.list2.id, restaurantList.list2.names)
-          populateList("list3", restaurantList.list3.id, restaurantList.list3.names)
-          populateList("list4", restaurantList.list4.id, restaurantList.list4.names)
-          populateList("list5", restaurantList.list5.id, restaurantList.list5.names)
-          populateList("list6", restaurantList.list6.id, restaurantList.list6.names)
-          populateList("list7", restaurantList.list7.id, restaurantList.list7.names)
 
           let mapIdDiv = document.getElementById("mapid")
           mapIdDiv.setAttribute("style", "height:400px; width:600px;");
 
-          let mymap = L.map('mapid').setView([44.4775, -73.2128], 16);
+          let mymap = L.map('mapid').setView([44.4779, -73.2159], 16);
 
           L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
             attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -185,30 +200,44 @@
             accessToken: 'pk.eyJ1IjoiZGptb3Jvc2luaSIsImEiOiJjamphMng3a20wN2xwM3BxaDl1b2hlamNjIn0.dd7Bj-cAdxOMnaS9t01gpw'
           }).addTo(mymap);
 
-          let marker0 = L.marker([44.4758, -73.2128]).addTo(mymap);
-          marker0.bindPopup("<a href='/ahli-babas-kabob-shop'>Ahli Baba's Kabob Shop</a>")
-
-          let marker1 = L.marker([44.4757, -73.2126]).addTo(mymap);
-          marker1.bindPopup("<a href='/thai-dishes'>Thai Dishes</a>")
-
-          let marker2 = L.marker([44.4782, -73.2108]).addTo(mymap);
-          marker2.bindPopup("<a href='/city-market'>City Market</a>")
-
-          let marker3 = L.marker([44.4755, -73.2171]).addTo(mymap);
-          marker3.bindPopup("<a href='/august-first'>August First</a>")
-
-          let marker4 = L.marker([44.4775, -73.2128]).addTo(mymap);
-          marker4.bindPopup("<a href='/church-street-tavern'>Church Street Tavern</a>")
-
-          let marker5 = L.marker([44.4762, -73.2113]).addTo(mymap);
-          marker5.bindPopup("<a href='/mr-mikes'>Mr. Mike's</a>")
-
-          let marker6 = L.marker([44.4795, -73.2121]).addTo(mymap);
-          marker6.bindPopup("<a href='/new-moon'>New Moon</a>")
-
-          let marker7 = L.marker([44.4780, -73.2124]).addTo(mymap);
-          marker7.bindPopup("<a href='/asiana-noodle-house'>Asiana Noodle House</a>")
-
+          function addMapMarker(markerID, mapLat, mapLon, restaurantID, restaurantNames) {
+            markerID = L.marker([mapLat, mapLon]).addTo(mymap);
+            markerID.bindPopup("<a href='/" + restaurantID + "'>" + restaurantNames + "</a>")
+          }
+          let marker1
+          addMapMarker(marker1, restaurantList.ahliB.lat, restaurantList.ahliB.lon, restaurantList.ahliB.id, restaurantList.ahliB.names)
+          let marker2
+          addMapMarker(marker2, restaurantList.asiana.lat, restaurantList.asiana.lon, restaurantList.asiana.id, restaurantList.asiana.names)
+          let marker3
+          addMapMarker(marker3, restaurantList.august.lat, restaurantList.august.lon, restaurantList.august.id, restaurantList.august.names)
+          let marker4
+          addMapMarker(marker4, restaurantList.cityM.lat, restaurantList.cityM.lon, restaurantList.cityM.id, restaurantList.cityM.names)
+          let marker5
+          addMapMarker(marker5, restaurantList.churchT.lat, restaurantList.churchT.lon, restaurantList.churchT.id, restaurantList.churchT.names)
+          let marker6
+          addMapMarker(marker6, restaurantList.mrMike.lat, restaurantList.mrMike.lon, restaurantList.mrMike.id, restaurantList.mrMike.names)
+          let marker7
+          addMapMarker(marker7, restaurantList.newMoon.lat, restaurantList.newMoon.lon, restaurantList.newMoon.id, restaurantList.newMoon.names)
+          let marker8
+          addMapMarker(marker8, restaurantList.pizzaVerita.lat, restaurantList.pizzaVerita.lon, restaurantList.pizzaVerita.id, restaurantList.pizzaVerita.names)
+          let marker9
+          addMapMarker(marker9, restaurantList.thaiDishes.lat, restaurantList.thaiDishes.lon, restaurantList.thaiDishes.id, restaurantList.thaiDishes.names)
+          let marker10
+          addMapMarker(marker10, restaurantList.americanFlat.lat, restaurantList.americanFlat.lon, restaurantList.americanFlat.id, restaurantList.americanFlat.names)
+          let marker11
+          addMapMarker(marker11, restaurantList.deli126.lat, restaurantList.deli126.lon, restaurantList.deli126.id, restaurantList.deli126.names)
+          let marker12
+          addMapMarker(marker12, restaurantList.kkd.lat, restaurantList.kkd.lon, restaurantList.kkd.id, restaurantList.kkd.names)
+          let marker13
+          addMapMarker(marker13, restaurantList.muddyWaters.lat, restaurantList.muddyWaters.lon, restaurantList.muddyWaters.id, restaurantList.muddyWaters.names)
+          let marker14
+          addMapMarker(marker14, restaurantList.dailyPlanet.lat, restaurantList.dailyPlanet.lon, restaurantList.dailyPlanet.id, restaurantList.dailyPlanet.names)
+          let marker15
+          addMapMarker(marker15, restaurantList.redOnion.lat, restaurantList.redOnion.lon, restaurantList.redOnion.id, restaurantList.redOnion.names)
+          let marker16
+          addMapMarker(marker16, restaurantList.splash.lat, restaurantList.splash.lon, restaurantList.splash.id, restaurantList.splash.names)
+          let marker17
+          addMapMarker(marker17, restaurantList.theArchives.lat, restaurantList.theArchives.lon, restaurantList.theArchives.id, restaurantList.theArchives.names)
         })
 
     } else {
@@ -245,7 +274,7 @@
             data.notes = marked(data.notes.toString())
             document.getElementById('notes').innerHTML = "<h2>Notes: </h2><br>" + data.notes
           }
-          document.getElementById('menu').innerHTML = "<a href=" + data.menu + ">" + data.name + "Menu</a>"
+          document.getElementById('menu').innerHTML = "<a href='" + data.menu + "'><div id='menuLink'>" + data.name + "Menu</div></a>"
         })
         .then(function () {
 
