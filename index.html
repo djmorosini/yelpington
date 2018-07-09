@@ -89,16 +89,17 @@
     width: 310px;
     text-align: center;
   }
-
+  #layout {
+    display:flex;
+  }
   #wrapper {
     display: flex;
     flex-direction: column;
+
   }
 
   #map {
-    position: absolute;
-    top: 180px;
-    left: 750px;
+    margin-left: 20px;
   }
 
   #menu a {
@@ -153,21 +154,23 @@
   <div id="menu"></div>
 
   <nav id="navBar"></nav>
-
-  <div id="wrapper">
-    <div id="addressDiv"></div>
-    <div id="phone"></div>
-    <div id="hours"></div>
-    <div id="notes"></div>
-  </div>
   <div id="frontMap"></div>
-  <div id="map"></div>
+  <div id="layout">
+    <div id="wrapper">
+      <div id="addressDiv"></div>
+      <div id="phone"></div>
+      <div id="hours"></div>
+      <div id="notes"></div>
+    </div>
+    <div id="map"></div>
+  </div>
 
   <script>
 
     let name = document.location.pathname.slice(1)
     let data;
     let list;
+
     if (!name || name == "all") {
 
       let title = document.getElementById("title")
@@ -263,7 +266,7 @@
     } else {
 
       let wrapDiv = document.getElementById("wrapper")
-      wrapDiv.setAttribute("style", "min-height: 450px; width: 650px; border: 1px solid black; background-color: rgba(255, 255, 255, 0.5); padding: 5px;")
+      wrapDiv.setAttribute("style", "min-height: 450px; width: 650px; min-width: 200px; border: 1px solid black; background-color: rgba(255, 255, 255, 0.5); padding: 5px;")
 
       fetch(name + '.json')
         .then(function (response) {
@@ -323,7 +326,7 @@
               markLat = myJSON[0].lat
               markLon = myJSON[0].lon
 
-              document.getElementById("map").innerHTML = "<h2>Location: </h2><br>" + '<iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=' + thirdBbox + "," + firstBbox + "," + fourthBbox + "," + secondBbox + '&layer=mapnik&marker=' + markLat + '%2C' + markLon + '" style="border: 1px solid black"></iframe><br/><small><a href="https://www.openstreetmap.org/?mlat=44.47518&mlon=-73.21256#map=19/44.47518/-73.21256">View Larger Map</a></small>'
+              document.getElementById("map").innerHTML = "<h2>Location: </h2><br>" + '<iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=' + thirdBbox + "," + firstBbox + "," + fourthBbox + "," + secondBbox + '&layer=mapnik&marker=' + markLat + '%2C' + markLon + '" style="border: 1px solid black"></iframe><br/><small><a style="position: relative; bottom: 20px; left:10px; background-color:white;" href="https://www.openstreetmap.org/?mlat=44.47518&mlon=-73.21256#map=19/44.47518/-73.21256">View Larger Map</a></small>'
 
             })
 
