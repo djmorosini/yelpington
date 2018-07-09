@@ -72,9 +72,9 @@
   }
 
   #frontMap {
-    position: absolute;
-    top: 230px;
-    left: 450px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
   }
 
   #menu {
@@ -89,9 +89,15 @@
     width: 310px;
     text-align: center;
   }
-  #layout {
-    display:flex;
+
+  #directory {
+    display: flex;
   }
+
+  #layout {
+    display: flex;
+  }
+
   #wrapper {
     display: flex;
     flex-direction: column;
@@ -152,9 +158,10 @@
 
   <h1 id="title"></h1>
   <div id="menu"></div>
-
-  <nav id="navBar"></nav>
-  <div id="frontMap"></div>
+  <div id="directory">
+    <nav id="navBar"></nav>
+    <div id="frontMap"></div>
+  </div>
   <div id="layout">
     <div id="wrapper">
       <div id="addressDiv"></div>
