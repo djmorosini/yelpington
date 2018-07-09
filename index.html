@@ -71,7 +71,7 @@
     font-size: 20px;
   }
 
-  #mapid {
+  #frontMap {
     position: absolute;
     top: 230px;
     left: 450px;
@@ -132,12 +132,12 @@
     background-color: red;
   }
 
-  #mapid a {
+  #frontMap a {
     color: black;
     font-size: 12px;
   }
 
-  #mapid a:hover {
+  #frontMap a:hover {
     color: rgb(109, 0, 109);
     text-decoration: none;
   }
@@ -160,8 +160,8 @@
     <div id="hours"></div>
     <div id="notes"></div>
   </div>
+  <div id="frontMap"></div>
   <div id="map"></div>
-  <div id="mapid"></div>
 
   <script>
 
@@ -207,10 +207,10 @@
             navListItems[i].setAttribute("style", "text-align: left; height: 30px; width: 260px; padding: 10px 10px 10px 10px;")
           }
 
-          let mapIdDiv = document.getElementById("mapid")
-          mapIdDiv.setAttribute("style", "height: 400px; width: 600px; border: 1px solid black;");
+          let frontMapDiv = document.getElementById("frontMap")
+          frontMapDiv.setAttribute("style", "height: 400px; width: 600px; border: 1px solid black;");
 
-          let mymap = L.map('mapid').setView([44.4779, -73.2166], 16);
+          let mymap = L.map('frontMap').setView([44.4779, -73.2166], 16);
 
           L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
             attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
