@@ -6,5 +6,9 @@
     "hours": "11:30 am - 2:00 am",
     "website": "http://churchstreet.tavernvt.com/",
     "menu": "http://churchstreet.tavernvt.com/food-menu",
-    "notes": ["Accommodates parties of multiple sizes","'Try the fiery chicken wrap, its delicious!' -Tim L."]
+    "notes": [
+        "Accommodates parties of multiple sizes","'Try the fiery chicken wrap, its delicious!' -Tim L."
+    ],
+    "lat": "44.4775",
+    "lon": "-73.2128"
 }

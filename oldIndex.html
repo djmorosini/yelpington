@@ -1,0 +1,347 @@
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Yelpington App</title>
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+  <script src="main.js"></script> -->
+  <link rel="shortcut icon" href="files/yIcon.ico">
+  <link href="https://fonts.googleapis.com/css?family=PT+Serif" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
+    crossorigin="" />
+  <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js" integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw=="
+    crossorigin=""></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<style>
+  body {
+    background-color: lightgray;
+    font-family: 'PT Serif', serif;
+  }
+
+  h1 {
+    color: rgb(155, 3, 3);
+    text-align: center;
+    height: 50px;
+  }
+
+  h1 a {
+    color: rgb(155, 3, 3);
+  }
+
+  h1 a:hover {
+    color: rgb(109, 0, 109);
+    text-decoration: none;
+    font-size: 34px;
+  }
+
+  h2 {
+    color: rgb(0, 0, 158);
+  }
+
+  #pageHead {
+    height: 45px;
+    width: 100%;
+    background-color: red;
+    margin: 0;
+    text-align: center;
+    color: white;
+    font-size: 40px;
+    border: 1px solid black;
+    padding: 0 0 10px 0;
+  }
+
+  #home {
+    float: left;
+    width: 50px;
+    font-size: 18px;
+    color: black;
+    border: 1px solid black;
+    background-color: lightgray;
+    height: 35px;
+    width: 55px;
+    padding: 10px 5px 10px 5px;
+  }
+
+  #home:hover {
+    color: rgb(109, 0, 109);
+    text-decoration: none;
+    font-size: 20px;
+  }
+
+  #frontMap {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+  }
+
+  #menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-bottom: 1px;
+  }
+
+  #menuLink {
+    height: 30px;
+    width: 310px;
+    text-align: center;
+  }
+
+  #directory {
+    display: flex;
+  }
+
+  #layout {
+    display: flex;
+  }
+
+  #wrapper {
+    display: flex;
+    flex-direction: column;
+
+  }
+
+  #map {
+    margin-left: 20px;
+  }
+
+  #menu a {
+    font-size: 18px;
+    color: black;
+    border: 1px solid black;
+  }
+
+  #menu a:hover {
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    background-color: red;
+  }
+
+  #navBar a {
+    font-size: 18px;
+    color: black;
+    width: 260px;
+    height: 50px;
+    overflow: hidden;
+    display: block;
+    margin: 10px;
+    border: 1px solid black;
+  }
+
+  #navBar a:hover {
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    background-color: red;
+  }
+
+  #frontMap a {
+    color: black;
+    font-size: 12px;
+  }
+
+  #frontMap a:hover {
+    color: rgb(109, 0, 109);
+    text-decoration: none;
+  }
+</style>
+
+<body>
+  <a href="/" id="home">Home</a>
+  <div id="pageHead">
+    <header>Yelpington❢</header>
+  </div>
+
+  <h1 id="title"></h1>
+  <div id="menu"></div>
+  <div id="directory">
+    <nav id="navBar"></nav>
+    <div id="frontMap"></div>
+  </div>
+  <div id="layout">
+    <div id="wrapper">
+      <div id="addressDiv"></div>
+      <div id="phone"></div>
+      <div id="hours"></div>
+      <div id="notes"></div>
+    </div>
+    <div id="map"></div>
+  </div>
+
+  <script>
+
+    let name = document.location.pathname.slice(1)
+    let data;
+    let list;
+
+    if (!name || name == "all") {
+
+      let title = document.getElementById("title")
+      title.textContent = "Restaurant Directory 🍗"
+
+      fetch('files/list.json')
+        .then(function (response) {
+          return response.text();
+        })
+        .then(function (myText) {
+          restaurantList = JSON.parse(myText)
+
+          function populateList(listNumber, jsonListNumberID, jsonListNumberNames) {
+            document.getElementById(listNumber).innerHTML += "<a href=/" + jsonListNumberID + "><div class='navList'>" + jsonListNumberNames + "</div></a>"
+          }
+
+          populateList("navBar", restaurantList.ahliB.id, restaurantList.ahliB.names)
+          populateList("navBar", restaurantList.americanFlat.id, restaurantList.americanFlat.names)
+          populateList("navBar", restaurantList.asiana.id, restaurantList.asiana.names)
+          populateList("navBar", restaurantList.august.id, restaurantList.august.names)
+          populateList("navBar", restaurantList.cityM.id, restaurantList.cityM.names)
+          populateList("navBar", restaurantList.churchT.id, restaurantList.churchT.names)
+          populateList("navBar", restaurantList.dailyPlanet.id, restaurantList.dailyPlanet.names)
+          populateList("navBar", restaurantList.deli126.id, restaurantList.deli126.names)
+          populateList("navBar", restaurantList.kkd.id, restaurantList.kkd.names)
+          populateList("navBar", restaurantList.mrMike.id, restaurantList.mrMike.names)
+          populateList("navBar", restaurantList.muddyWaters.id, restaurantList.muddyWaters.names)
+          populateList("navBar", restaurantList.newMoon.id, restaurantList.newMoon.names)
+          populateList("navBar", restaurantList.pizzaVerita.id, restaurantList.pizzaVerita.names)
+          populateList("navBar", restaurantList.redOnion.id, restaurantList.redOnion.names)
+          populateList("navBar", restaurantList.splash.id, restaurantList.splash.names)
+          populateList("navBar", restaurantList.thaiDishes.id, restaurantList.thaiDishes.names)
+          populateList("navBar", restaurantList.theArchives.id, restaurantList.theArchives.names)
+
+          let navListItems = document.getElementsByClassName("navList")
+          for (i = 0; i < navListItems.length; i++) {
+            navListItems[i].setAttribute("style", "text-align: left; height: 30px; width: 260px; padding: 10px 10px 10px 10px;")
+          }
+
+          let frontMapDiv = document.getElementById("frontMap")
+          frontMapDiv.setAttribute("style", "height: 400px; width: 600px; border: 1px solid black;");
+
+          let mymap = L.map('frontMap').setView([44.4779, -73.2166], 16);
+
+          L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+            maxZoom: 18,
+            id: 'mapbox.streets',
+            accessToken: 'pk.eyJ1IjoiZGptb3Jvc2luaSIsImEiOiJjamphMng3a20wN2xwM3BxaDl1b2hlamNjIn0.dd7Bj-cAdxOMnaS9t01gpw'
+          }).addTo(mymap);
+
+          function addMapMarker(markerID, mapLat, mapLon, restaurantID, restaurantNames) {
+            markerID = L.marker([mapLat, mapLon]).addTo(mymap);
+            markerID.bindPopup("<a href='/" + restaurantID + "'>" + restaurantNames + "</a>")
+          }
+
+          let marker1
+          addMapMarker(marker1, restaurantList.ahliB.lat, restaurantList.ahliB.lon, restaurantList.ahliB.id, restaurantList.ahliB.names)
+          let marker2
+          addMapMarker(marker2, restaurantList.asiana.lat, restaurantList.asiana.lon, restaurantList.asiana.id, restaurantList.asiana.names)
+          let marker3
+          addMapMarker(marker3, restaurantList.august.lat, restaurantList.august.lon, restaurantList.august.id, restaurantList.august.names)
+          let marker4
+          addMapMarker(marker4, restaurantList.cityM.lat, restaurantList.cityM.lon, restaurantList.cityM.id, restaurantList.cityM.names)
+          let marker5
+          addMapMarker(marker5, restaurantList.churchT.lat, restaurantList.churchT.lon, restaurantList.churchT.id, restaurantList.churchT.names)
+          let marker6
+          addMapMarker(marker6, restaurantList.mrMike.lat, restaurantList.mrMike.lon, restaurantList.mrMike.id, restaurantList.mrMike.names)
+          let marker7
+          addMapMarker(marker7, restaurantList.newMoon.lat, restaurantList.newMoon.lon, restaurantList.newMoon.id, restaurantList.newMoon.names)
+          let marker8
+          addMapMarker(marker8, restaurantList.pizzaVerita.lat, restaurantList.pizzaVerita.lon, restaurantList.pizzaVerita.id, restaurantList.pizzaVerita.names)
+          let marker9
+          addMapMarker(marker9, restaurantList.thaiDishes.lat, restaurantList.thaiDishes.lon, restaurantList.thaiDishes.id, restaurantList.thaiDishes.names)
+          let marker10
+          addMapMarker(marker10, restaurantList.americanFlat.lat, restaurantList.americanFlat.lon, restaurantList.americanFlat.id, restaurantList.americanFlat.names)
+          let marker11
+          addMapMarker(marker11, restaurantList.deli126.lat, restaurantList.deli126.lon, restaurantList.deli126.id, restaurantList.deli126.names)
+          let marker12
+          addMapMarker(marker12, restaurantList.kkd.lat, restaurantList.kkd.lon, restaurantList.kkd.id, restaurantList.kkd.names)
+          let marker13
+          addMapMarker(marker13, restaurantList.muddyWaters.lat, restaurantList.muddyWaters.lon, restaurantList.muddyWaters.id, restaurantList.muddyWaters.names)
+          let marker14
+          addMapMarker(marker14, restaurantList.dailyPlanet.lat, restaurantList.dailyPlanet.lon, restaurantList.dailyPlanet.id, restaurantList.dailyPlanet.names)
+          let marker15
+          addMapMarker(marker15, restaurantList.redOnion.lat, restaurantList.redOnion.lon, restaurantList.redOnion.id, restaurantList.redOnion.names)
+          let marker16
+          addMapMarker(marker16, restaurantList.splash.lat, restaurantList.splash.lon, restaurantList.splash.id, restaurantList.splash.names)
+          let marker17
+          addMapMarker(marker17, restaurantList.theArchives.lat, restaurantList.theArchives.lon, restaurantList.theArchives.id, restaurantList.theArchives.names)
+        })
+
+    } else {
+
+      let wrapDiv = document.getElementById("wrapper")
+      wrapDiv.setAttribute("style", "min-height: 450px; width: 650px; min-width: 200px; border: 1px solid black; background-color: rgba(255, 255, 255, 0.5); padding: 5px;")
+
+      fetch(name + '.json')
+        .then(function (response) {
+          return response.text();
+        })
+        .then(function (myText) {
+
+          data = JSON.parse(myText)
+
+          document.getElementById('menu').innerHTML = "<a href='" + data.menu + "'><div id='menuLink'>" + data.name + "Menu</div></a>"
+
+          document.querySelector('h1').innerHTML = "<a href=" + data.website + ">" + data.name + "</a>"
+          document.getElementById('phone').innerHTML = "<h2>Phone: </h2>" + data["phone number"]
+          document.getElementById('addressDiv').innerHTML = "<h2>Address: </h2>" + data.address + "<br>"
+          if (Array.isArray(data.hours)) {
+            document.getElementById('hours').innerHTML += "<h2>Hours: </h2>"
+            for (let i = 0; i < data.hours.length; i++) {
+
+              document.getElementById('hours').innerHTML += data.hours[i] + "<br>"
+
+            }
+          } else {
+            document.getElementById('hours').innerHTML = "<h2>Hours: </h2>" + data.hours + "<br>"
+          }
+
+          if (Array.isArray(data.notes)) {
+            document.getElementById('notes').innerHTML += "<h2>Notes: </h2>"
+            for (let i = 0; i < data.notes.length; i++) {
+
+              document.getElementById('notes').innerHTML += marked(data.notes[i])
+
+            }
+          } else {
+            data.notes = marked(data.notes.toString())
+            document.getElementById('notes').innerHTML = "<h2>Notes: </h2>" + data.notes + "<br>"
+          }
+        })
+        .then(function () {
+
+          let addressArray = data.address.split(" ")
+
+          let locationSearch = addressArray.join("+")
+
+          let url = "https://nominatim.openstreetmap.org/search?q=" + locationSearch + "&format=json"
+
+          fetch(url)
+            .then(function (response) {
+              console.log(url)
+              return response.json();
+            })
+            .then(function (myJSON) {
+              firstBbox = myJSON[0].boundingbox[0]
+              secondBbox = myJSON[0].boundingbox[1]
+              thirdBbox = myJSON[0].boundingbox[2]
+              fourthBbox = myJSON[0].boundingbox[3]
+
+              markLat = myJSON[0].lat
+              markLon = myJSON[0].lon
+
+              document.getElementById("map").innerHTML = "<h2>Location: </h2><br>" + '<iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=' + thirdBbox + "," + firstBbox + "," + fourthBbox + "," + secondBbox + '&layer=mapnik&marker=' + markLat + '%2C' + markLon + '" style="border: 1px solid black"></iframe><br/><small><a style="position: relative; bottom: 20px; left:10px; background-color:white;" href="https://www.openstreetmap.org/?mlat=44.47518&mlon=-73.21256#map=19/44.47518/-73.21256">View Larger Map</a></small>'
+
+            })
+
+        });
+    }
+
+  </script>
+
+</body>
+
+</html>

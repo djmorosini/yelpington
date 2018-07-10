@@ -6,5 +6,9 @@
     "hours": "Monday-Saturday 7:30 - 4:00pm",
     "website": "http://augustfirstvt.com/",
     "menu": "http://augustfirstvt.com/menu/",
-    "notes": ["Their jalapeno cheddar bread is good even though their laptop policy is bogus.", "Chipotle Breakfast Sandwich... It's Killer!"]
+    "notes": [
+        "Their jalapeno cheddar bread is good even though their laptop policy is bogus.", "Chipotle Breakfast Sandwich... It's Killer!"
+    ],
+    "lat": "44.4755",
+    "lon": "-73.2171"
 }

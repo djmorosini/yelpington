@@ -1,5 +1,5 @@
 {
-  "id": "new-moon-cafe",
+  "id": "new-moon",
   "name": "New Moon Cafe 🌑",
   "address": "150 Cherry St. Burlington, VT 05401",
   "phone number": "(802) 383-1505",
@@ -8,5 +8,7 @@
   "menu": "http://newmoonvt.com/",
   "notes": [
     "Their large salads are huge!"
-  ]
+  ],
+  "lat": "44.4795",
+  "lon": "-73.2121"
 }
