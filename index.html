@@ -82,7 +82,7 @@
         flex-direction: row;
         justify-content: flex-end;
         margin-bottom: 1px;
-        
+
     }
 
     #menuLink {
@@ -188,7 +188,19 @@
             let title = document.getElementById("title")
             title.textContent = "Restaurant Directory 🍗"
 
-            function fetchAllAndPopulateList() {
+            let frontMapDiv = document.getElementById("frontMap")
+            frontMapDiv.setAttribute("style", "height: 400px; width: 600px; border: 1px solid black; float: right;");
+
+            let mymap = L.map('frontMap').setView([44.4779, -73.2166], 16);
+
+            L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+                attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+                maxZoom: 18,
+                id: 'mapbox.streets',
+                accessToken: 'pk.eyJ1IjoiZGptb3Jvc2luaSIsImEiOiJjamphMng3a20wN2xwM3BxaDl1b2hlamNjIn0.dd7Bj-cAdxOMnaS9t01gpw'
+            }).addTo(mymap);
+
+            function fetchAllThenPopulateListAndMap() {
                 fetch('all.json')
                     .then(function (response) {
                         return response.text();
@@ -210,40 +222,6 @@
 
                                     populateList("navBar", restaurantJson.id, restaurantJson.name)
 
-                                })
-                        }
-                    })
-            }
-            fetchAllAndPopulateList()
-            
-            let frontMapDiv = document.getElementById("frontMap")
-            frontMapDiv.setAttribute("style", "height: 400px; width: 600px; border: 1px solid black; float: right;");
-
-            let mymap = L.map('frontMap').setView([44.4779, -73.2166], 16);
-
-            L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-                attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-                maxZoom: 18,
-                id: 'mapbox.streets',
-                accessToken: 'pk.eyJ1IjoiZGptb3Jvc2luaSIsImEiOiJjamphMng3a20wN2xwM3BxaDl1b2hlamNjIn0.dd7Bj-cAdxOMnaS9t01gpw'
-            }).addTo(mymap);
-
-            function populateMap() {
-                fetch('all.json')
-                    .then(function (response) {
-                        return response.text();
-                    })
-                    .then(function (myText) {
-                        allList = JSON.parse(myText)
-                        for (i = 0; i < allList.length; i++) {
-                            fetch(allList[i] + '.json')
-                                .then(function (response) {
-                                    return response.text();
-                                })
-                                .then(function (restaurantData) {
-
-                                    restaurantJson = JSON.parse(restaurantData)
-
                                     function addMapMarker(markerID, mapLat, mapLon, restaurantID, restaurantName) {
                                         markerID = L.marker([mapLat, mapLon]).addTo(mymap);
                                         markerID.bindPopup("<a href='/" + restaurantID + "'>" + restaurantName + "</a>")
@@ -251,11 +229,12 @@
 
                                     addMapMarker(i, restaurantJson.lat, restaurantJson.lon, restaurantJson.id, restaurantJson.name)
 
+
                                 })
                         }
                     })
             }
-            populateMap()
+            fetchAllThenPopulateListAndMap()
 
         } else {
 
