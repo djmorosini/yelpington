@@ -1,2 +1,3 @@
-# yelpington
-2018 downtown Burlington lunch directory
+# Yelpington
+
+[Yelpington Page](https://tranquil-wave-34376.herokuapp.com/)
